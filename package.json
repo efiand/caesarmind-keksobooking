@@ -1,0 +1,15 @@
+{
+  "name": "keksobooking",
+  "private": true,
+  "type": "module",
+  "description": "Личный проект «Кексобукинг» от HTML Academy",
+  "devDependencies": {
+    "browser-sync": "2.27.7",
+    "eslint": "8.7.0",
+    "eslint-config-htmlacademy": "5.0.0"
+  },
+  "scripts": {
+    "dev": "browser-sync start --config \"bs-config.cjs\"",
+    "lint": "eslint public/js/"
+  }
+}
