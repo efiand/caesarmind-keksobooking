@@ -6,7 +6,7 @@ function getRandomNumber(min, max) {
   }
   // If min is a larger number than max, their positions are swapped for correct calculation
   if(min > max) {
-    return randomizeNumber(max, minß);
+    return randomizeNumber(max, min);
   }
   // If any argument is less than 0,
   //the function calls itself recursively with the argument transformed using Math.abs().
