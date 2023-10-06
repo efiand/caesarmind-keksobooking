@@ -1,4 +1,4 @@
-import {getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray} from './utils.js';
+import {getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray, getRandomItem} from './utils.js';
 
 const AVATARS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const TITLES = [
@@ -35,39 +35,44 @@ const LONGITUDE = {
 };
 
 const getAvatarId = () => {
-  if (AVATARS.length === 0) {
+  const duplicatedAvatars = AVATARS.slice();
+  if (duplicatedAvatars.length === 0) {
     return null;
   }
 
-  const randomAvatar = getRandomUniqueItem(AVATARS);
+  const randomAvatar = getRandomUniqueItem(duplicatedAvatars);
   const paddedNumber = randomAvatar.toString().padStart(2, '0');
   return paddedNumber;
 };
 
-const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+const generateObject = () => {
+  const lat = getRandomFloatString(LATITUDE.from, LATITUDE.to, 5);
+  const lng = getRandomFloatString(LONGITUDE.from, LONGITUDE.to, 5);
 
-const generateObject = () => ({
-  author: {
-    avatar: `img/avatars/user${getAvatarId()}.png`
-  },
-  offer: {
-    title: getRandomItem(TITLES),
-    price: getRandomInteger(100, 10000),
-    type: getRandomItem(TYPES),
-    rooms: getRandomInteger(1, 10),
-    guests: getRandomInteger(1, 10),
-    checkin: getRandomItem(TIMES),
-    checkout: getRandomItem(TIMES),
-    features: getRandomItemsFromArray(FEATURES),
-    description: getRandomItem(DESCRIPTIONS),
-    photos: getRandomItem(PHOTOS)
-  },
-  location: {
-    lat: getRandomFloatString(LATITUDE.from, LATITUDE.to, 5),
-    lng: getRandomFloatString(LONGITUDE.from, LONGITUDE.to, 5)
-  }
-});
+  return {
+    author: {
+      avatar: `img/avatars/user${getAvatarId()}.png`
+    },
+    offer: {
+      address: `${lat}, ${lng}`,
+      title: getRandomItem(TITLES),
+      price: getRandomInteger(100, 10000),
+      type: getRandomItem(TYPES),
+      rooms: getRandomInteger(1, 10),
+      guests: getRandomInteger(1, 10),
+      checkin: getRandomItem(TIMES),
+      checkout: getRandomItem(TIMES),
+      features: getRandomItemsFromArray(FEATURES),
+      description: getRandomItem(DESCRIPTIONS),
+      photos: getRandomItemsFromArray(PHOTOS)
+    },
+    location: {
+      lat: lat,
+      lng: lng
+    }
+  };
+};
 
-const randomObjects = Array.from({ length: 10 }, generateObject);
+const generateObjects = (length = 10) => Array.from({ length: length }, generateObject);
 
-export {randomObjects, generateObject};
+export { generateObjects };

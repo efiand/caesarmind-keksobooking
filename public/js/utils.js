@@ -1,4 +1,4 @@
-//Generates random number in range
+// Generates random number in range
 const getRandomNumber = (min, max, integer = true) => {
   // If min/max have equal values returns min
   if (max === min) {
@@ -33,12 +33,12 @@ const getRandomFloatString = (min, max, decimal) => getRandomNumber(min, max, fa
 const getRandomUniqueItem = (array) => {
   const randomNumber = getRandomInteger(0, array.length - 1);
   const randomElement = array[randomNumber];
-  array.splice(array[randomNumber], 1);
+  array.splice(randomNumber, 1);
 
   return randomElement;
 };
 
-// Choose random items from another array and generate new one
+// Choose random amount of items from another array and generate new one
 // without having duplicated items in new array
 const getRandomItemsFromArray = (array) => {
   const duplicatedArray = array.slice();
@@ -54,4 +54,6 @@ const getRandomItemsFromArray = (array) => {
   return resultArray;
 };
 
-export {getRandomNumber, getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray};
+const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+export {getRandomNumber, getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray, getRandomItem};
