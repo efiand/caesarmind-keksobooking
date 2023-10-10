@@ -66,13 +66,10 @@ const generateObject = () => {
       description: getRandomItem(DESCRIPTIONS),
       photos: getRandomItemsFromArray(PHOTOS)
     },
-    location: {
-      lat: lat,
-      lng: lng
-    }
+    location: { lat, lng}
   };
 };
 
-const generateObjects = (length = 10) => Array.from({ length: length }, generateObject);
+const generateObjects = (length) => Array.from({ length: length }, generateObject);
 
 export { generateObjects };

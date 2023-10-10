@@ -1,28 +1,20 @@
 const changeFormState = (parentClass, newClass, disable = true) => {
   const parentElement = document.querySelector(`.${parentClass}`);
   const childrenList = Array.from(parentElement.children);
+  const classMethod = disable ? 'add' : 'remove';
 
-  if(disable) {
-    parentElement.classList.add(`${newClass}`);
-    childrenList.forEach((childrenListItem) => {
-      childrenListItem.disabled = true;
-    });
-  } else {
-    parentElement.classList.remove(`${newClass}`);
-    childrenList.forEach((childrenListItem) => {
-      childrenListItem.disabled = false;
-    });
-  }
+  parentElement.classList[classMethod](`${newClass}`);
+  childrenList.forEach((childrenListItem) => {
+    childrenListItem.disabled = disable;
+  });
 };
 
-const disableAllFilters = () => {
-  changeFormState('map__filters', 'map__filters--disabled');
-  changeFormState('ad-form', 'ad-form--disabled');
+const toggleFormsState = (disable = false) => () => {
+  changeFormState('map__filters', 'map__filters--disabled', disable);
+  changeFormState('ad-form', 'ad-form--disabled', disable);
 };
 
-const enableAllFilters = () => {
-  changeFormState('map__filters', 'map__filters--disabled', false);
-  changeFormState('ad-form', 'ad-form--disabled', false);
-};
+const disableFormsActivity = toggleFormsState(true);
+const enableFormsActivity = toggleFormsState(false);
 
-export { disableAllFilters, enableAllFilters, changeFormState };
+export { disableFormsActivity, enableFormsActivity, changeFormState };

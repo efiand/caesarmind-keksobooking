@@ -56,4 +56,28 @@ const getRandomItemsFromArray = (array) => {
 
 const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-export {getRandomNumber, getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray, getRandomItem};
+
+// DOM-node creating function constructor
+// which gets 'data' as content source
+const createDomNode = (template) => {
+  const testFunction = (data, className, createChildElement) => {
+    const element = template.querySelector(`.${className}`);
+
+    if (data) {
+      if (typeof createChildElement === 'function') {
+        element.innerHTML = '';
+        data.forEach((item) => {
+          element.append(createChildElement(item));
+        });
+      } else {
+        element.textContent = data;
+      }
+    } else {
+      element.remove();
+    }
+  };
+
+  return testFunction;
+};
+
+export {getRandomNumber, getRandomInteger, getRandomFloatString, getRandomUniqueItem, getRandomItemsFromArray, getRandomItem, createDomNode};

@@ -1,9 +1,10 @@
 import { generateObjects } from './data.js';
 import { createCardsFromData } from './create-cards-from-data.js';
-import { disableAllFilters, enableAllFilters } from './change-form-state.js';
+import { disableFormsActivity, enableFormsActivity } from './change-form-state.js';
 
-createCardsFromData(generateObjects(1));
+createCardsFromData(generateObjects(5));
 
-disableAllFilters();
+disableFormsActivity();
+
 // Test if it enables
-setTimeout(enableAllFilters, 2000);
+setTimeout(enableFormsActivity, 2000);
