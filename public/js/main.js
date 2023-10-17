@@ -1,6 +1,6 @@
 import { generateObjects } from './data.js';
 import { createCardsFromData } from './create-cards-from-data.js';
-import { disableFormsActivity, enableFormsActivity } from './form.js';
+import { disableFormsActivity, enableFormsActivity } from './change-form-state.js';
 
 createCardsFromData(generateObjects(5));
 
